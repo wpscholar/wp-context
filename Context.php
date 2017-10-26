@@ -246,7 +246,7 @@ class Context {
 			$context = self::getSingleContext();
 		}
 
-		$context['singular'];
+		$context[] = 'singular';
 
 		return $context;
 	}
