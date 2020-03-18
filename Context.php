@@ -169,8 +169,7 @@ class Context {
 	 * @return array
 	 */
 	public static function getPageContext() {
-		/* @var \WP_Post $page */
-		$page    = get_queried_object();
+		$page    = get_post();
 		$context = [];
 		// Check if a custom template is in use.
 		$template = get_page_template_slug( $page );
