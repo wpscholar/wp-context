@@ -6,7 +6,7 @@ namespace wpscholar\WordPress;
  * Context based on WordPress' built-in template hierarchy.
  *
  * See the following link for additional info on the WordPress template hierarchy.
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ * @link    https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * Class Context
  * @package wpscholar\WordPress
@@ -42,7 +42,7 @@ class Context {
 	 *
 	 * @return array
 	 */
-	protected static function get404Context() {
+	public static function get404Context() {
 		return [ '404' ];
 	}
 
@@ -51,7 +51,7 @@ class Context {
 	 *
 	 * @return array
 	 */
-	protected static function getArchiveContext() {
+	public static function getArchiveContext() {
 		$context = [];
 
 		if ( is_tax() ) {
@@ -78,8 +78,8 @@ class Context {
 	 *
 	 * @return array
 	 */
-	protected static function getAttachmentContext() {
-		$context = [];
+	public static function getAttachmentContext() {
+		$context    = [];
 		$attachment = get_post();
 		if ( ! empty( $attachment->post_mime_type ) ) {
 			$type = explode( '/', $attachment->post_mime_type );
@@ -102,7 +102,7 @@ class Context {
 	 *
 	 * @return array
 	 */
-	protected static function getAuthorArchiveContext() {
+	public static function getAuthorArchiveContext() {
 		/* @var \WP_User $user */
 		$user = get_queried_object();
 
@@ -118,7 +118,7 @@ class Context {
 	 *
 	 * @return array
 	 */
-	protected static function getCategoryArchiveContext() {
+	public static function getCategoryArchiveContext() {
 		/* @var \WP_Term $term */
 		$term = get_queried_object();
 
@@ -134,7 +134,7 @@ class Context {
 	 *
 	 * @return array
 	 */
-	protected static function getDateArchiveContext() {
+	public static function getDateArchiveContext() {
 		return [ 'date' ];
 	}
 
@@ -143,7 +143,7 @@ class Context {
 	 *
 	 * @return array
 	 */
-	protected static function getFrontPageContext() {
+	public static function getFrontPageContext() {
 		$context = [ 'front-page' ];
 		if ( is_home() ) {
 			array_push( $context, ...self::getHomeContext() );
@@ -159,7 +159,7 @@ class Context {
 	 *
 	 * @return array
 	 */
-	protected static function getHomeContext() {
+	public static function getHomeContext() {
 		return [ 'home' ];
 	}
 
@@ -168,9 +168,9 @@ class Context {
 	 *
 	 * @return array
 	 */
-	protected static function getPageContext() {
+	public static function getPageContext() {
 		/* @var \WP_Post $page */
-		$page = get_queried_object();
+		$page    = get_queried_object();
 		$context = [];
 		// Check if a custom template is in use.
 		$template = get_page_template_slug( $page );
@@ -189,9 +189,9 @@ class Context {
 	 *
 	 * @return array
 	 */
-	protected static function getPostTypeArchiveContext() {
+	public static function getPostTypeArchiveContext() {
 		$postType = get_query_var( 'post_type' );
-		$context = [];
+		$context  = [];
 		if ( is_array( $postType ) ) {
 			// Have some sort of context for archives where multiple post types are loaded.
 			$context[] = 'archive-multi-post-type';
@@ -207,7 +207,7 @@ class Context {
 	 *
 	 * @return array
 	 */
-	protected static function getSearchContext() {
+	public static function getSearchContext() {
 		return [ 'search' ];
 	}
 
@@ -216,8 +216,8 @@ class Context {
 	 *
 	 * @return array
 	 */
-	protected static function getSingleContext() {
-		$post = get_post();
+	public static function getSingleContext() {
+		$post    = get_post();
 		$context = [];
 		// Check if a custom template is in use.
 		$template = get_page_template_slug( $post );
@@ -236,7 +236,7 @@ class Context {
 	 *
 	 * @return array
 	 */
-	protected static function getSingularContext() {
+	public static function getSingularContext() {
 		$context = [];
 		if ( is_attachment() ) {
 			$context = self::getAttachmentContext();
@@ -256,7 +256,7 @@ class Context {
 	 *
 	 * @return array
 	 */
-	protected static function getTagArchiveContext() {
+	public static function getTagArchiveContext() {
 		/* @var \WP_Term $term */
 		$term = get_queried_object();
 
@@ -272,7 +272,7 @@ class Context {
 	 *
 	 * @return array
 	 */
-	protected static function getTaxonomyArchiveContext() {
+	public static function getTaxonomyArchiveContext() {
 		/* @var \WP_Term $term */
 		$term = get_queried_object();
 
